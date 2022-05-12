@@ -8,7 +8,7 @@ import { StateType } from './redux/store';
 import { Course } from './models/Course';
 
 const App: React.FC = () => {
- 
+
   //useImitator();
   const [flNavigate, setFlNavigate] = React.useState<boolean>(true); 
   React.useEffect(() => setFlNavigate(false), [])
@@ -21,7 +21,7 @@ return <BrowserRouter>
 </Routes> 
 </BrowserRouter> 
 
- 
+
 }
 
 export default App;
