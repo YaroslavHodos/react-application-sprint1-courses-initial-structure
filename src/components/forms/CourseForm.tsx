@@ -6,8 +6,7 @@ import { getRandomNumber } from "../../util/random";
 type Props = {
     submitFn: (course: Course) => void;
 }
-const initialCourse: Course = createCourse(0, "",
-"",0, 0, new Date());
+const initialCourse: Course = createCourse(0, "","",0, 0, new Date());
 const CourseForm: React.FC<Props> = ({ submitFn }) => {
     const {courses, minHours, maxHours, lectors, minCost, maxCost, minYear, maxYear} = courseData;
     const [course, setCourse] = React.useState(initialCourse);
@@ -16,6 +15,7 @@ function onSubmit(event: any) {
     event.preventDefault();
     console.log(course)
     submitFn(course);
+    document.querySelector('form')?.reset();
 }
 function handlerCourse(event: any) {
     const courseCopy = {...course};
@@ -43,8 +43,11 @@ function handlerOpeningDate(event: any) {
     courseCopy.openingDate = new Date(event.target.value);
     setCourse(courseCopy);
 }
+function onReset() {
+    setCourse(initialCourse)
+}
 
-    return <form onSubmit={onSubmit}>
+    return <form onSubmit={onSubmit} onReset={onReset}>
         <Grid container spacing={{xs: 5, sm: 2, md: 13}} justifyContent="center">
             <Grid item xs={10} sm={5} >
                 <FormControl fullWidth required>
@@ -94,27 +97,27 @@ function handlerOpeningDate(event: any) {
             </Grid>
             <Grid item xs={10} sm={8} >
                         <TextField required label={'Opening Date'} type={'date'} fullWidth
-                        onChange={handlerOpeningDate} inputProps={
-                            {min: `${minYear}-01-01`,
-                                max: `${maxYear}-12-31`}
+                        onChange={handlerOpeningDate} inputProps = {{
+                                min: `${minYear}-01-01`,
+                                max: `${maxYear}-12-31`
+                            }
                         } InputLabelProps={{
                             shrink: true
                         }}/>
-                
-            </Grid>
-            <Grid item xs={12} sm={8} md={6}>
-            <Grid container justifyContent={"center"}>
-            <Grid item xs={5}>
-                <Button type="submit">Submit</Button>
-            </Grid>
-            <Grid item xs={5}>
-                <Button type="reset">Reset</Button>
-            </Grid>
 
             </Grid>
+                <Grid item xs={12} sm={8} md={6}>
+                    <Grid container justifyContent={"center"}>
+                        <Grid item xs={5}>
+                            <Button type="submit">Submit</Button>
+                        </Grid>
+                        <Grid item xs={5}>
+                            <Button type="reset">Reset</Button>
+                        </Grid>
 
-            </Grid>
+                    </Grid>
 
+                </Grid>
 
 
         </Grid>
