@@ -35,7 +35,7 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-};
+    };
 
 const Courses: React.FC = () => {
     const dispatch = useDispatch()
@@ -105,8 +105,8 @@ const Courses: React.FC = () => {
             courseUpdate={updatedCourse.current}/> : <DataGrid rows={courses} columns={columns} />}
     </Paper>
     <ActionConfirmation open={flOpen} title={confirmationData.current.title}
-    content={confirmationData.current.content} confirmHandler={confirmationData.current.confirmHandler}/>
-    <Modal
+        content={confirmationData.current.content} confirmHandler={confirmationData.current.confirmHandler}/>
+        <Modal
         open={modalOpen}
         onClose={()=>setModalOpen(false)}
         aria-labelledby="modal-modal-title"
@@ -117,7 +117,7 @@ const Courses: React.FC = () => {
                 {shownCourse.current && Object.entries(shownCourse.current as any).map(e => <ListItem key={e[0]}>{`${e[0]}: ${e[1]}`}</ListItem>)}
             </List>
         </Box>
-    </Modal>
+        </Modal>
     </Box>
 
 }
