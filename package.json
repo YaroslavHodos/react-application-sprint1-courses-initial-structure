@@ -39,8 +39,8 @@
     "plugins": [
       "react-hooks"
     ],
-    "rules":{
-      "react-hooks/rules-of-hooks":"warn"
+    "rules": {
+      "react-hooks/rules-of-hooks": "warn"
     }
   },
   "browserslist": {
@@ -54,5 +54,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.182"
   }
 }
