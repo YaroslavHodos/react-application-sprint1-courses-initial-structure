@@ -57,7 +57,7 @@ export default function LoginForm({submitFn}: Props) {
           }}
         >
             {flAlert && <Alert onClose={() => setAlert(false)} severity='error'
-             sx={{width: '50vw', mb: {xs: 5,sm:1,md: 5}}}>Wrong Credentials</Alert>}
+              sx={{width: '50vw', mb: {xs: 5,sm:1,md: 5}}}>Wrong Credentials</Alert>}
           <Avatar sx={{  bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -82,7 +82,6 @@ export default function LoginForm({submitFn}: Props) {
               label="Password"
               type="password"
               id="password"
-             
             />
             
             <Button
@@ -93,7 +92,6 @@ export default function LoginForm({submitFn}: Props) {
             >
               Sign In
             </Button>
-           
           </Box>
         </Box>
         <Copyright sx={{mt: {xs: 5, sm:2, md: 5}  }} />

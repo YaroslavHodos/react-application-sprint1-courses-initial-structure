@@ -11,8 +11,8 @@ export type StateType = {
     operationCode: OperationCode
 }
 const reducer = combineReducers<StateType> ({
-   courses: coursesReducer as any,
-   clientData: clientDataReducer as any,
-   operationCode: operationCodeReducer as any
+    courses: coursesReducer as any,
+    clientData: clientDataReducer as any,
+    operationCode: operationCodeReducer as any
 })
 export const store = configureStore({reducer})

@@ -1,9 +1,12 @@
+import { Observable, of } from "rxjs";
 import { Course } from "../models/Course";
+import { OperationCode } from "../models/OperationCode";
 import { getRandomNumber } from "../util/random";
 import CoursesService from "./CoursesService";
 export default class CoursesServiceArray implements CoursesService {
+    
     courses: Course[] = []
-   async add(course: Course): Promise<void> {
+    async add(course: Course): Promise<void> {
         const id = getRandomNumber(100000, 999999);
         course.id = id;
         this.courses.push(course);
@@ -12,7 +15,7 @@ export default class CoursesServiceArray implements CoursesService {
         const index = this.getIndex(id);
         this.courses.splice(index, 1);
     }
-   private getIndex(id: number): number {
+    private getIndex(id: number): number {
         const index = this.courses.findIndex(c => c.id === id);
         if (index < 0) {
             throw `course with id ${id} doesn't exist`
@@ -28,6 +31,9 @@ export default class CoursesServiceArray implements CoursesService {
     }
     async get(): Promise<Course[]> {
         return this.courses.slice();
+    }
+    getObservableData(): Observable<Course[] | OperationCode> {
+        return of(this.courses);
     }
     
 }

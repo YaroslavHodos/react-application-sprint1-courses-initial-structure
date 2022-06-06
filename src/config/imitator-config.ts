@@ -7,4 +7,4 @@ export const imitatorActions: ImitatorAction[] = [
     {prob: 90, action: 'add'},
     {prob: 95, action: 'update'},
     {prob: 100, action: 'remove'}
-  ]
+    ]

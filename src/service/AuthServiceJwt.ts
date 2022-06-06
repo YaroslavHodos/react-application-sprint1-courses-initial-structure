@@ -5,14 +5,14 @@ export const AUTH_TOKEN_ITEM = "auth-token";
 export default class AuthServiceJwt implements AuthService {
     constructor(private url: string) {}
     async login(loginData: LoginData): Promise<boolean | ClientData> {
-       const response = await fetch(this.url, {
-           method: "POST",
-           headers: {
-               "Content-Type": "application/json"
-           },
-           body: JSON.stringify(loginData)
-       });
-      return response.ok ? getClientData(response) : false;
+        const response = await fetch(this.url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(loginData)
+        });
+        return response.ok ? getClientData(response) : false;
     }
     async logout(): Promise<boolean> {
         return true;

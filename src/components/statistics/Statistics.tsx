@@ -38,7 +38,6 @@ const Statistics: React.FC<Props> = ({ field, title, unit, intervals, objects })
 
         flShow.current = false;
         const distribution: Distribution = getStatistics(field, interval, objects);
-      
         setRows(getRows(distribution));
         
 
@@ -51,7 +50,7 @@ const Statistics: React.FC<Props> = ({ field, title, unit, intervals, objects })
 
     return <Box>
         <Typography  sx={{textAlign: 'center', fontSize: {xs:'1.5em',
-         sm:"0.8em", md: '2em'}}}>{title}</Typography>
+            sm:"0.8em", md: '2em'}}}>{title}</Typography>
         <Box sx={{display: 'flex', justifyContent: 'center', alignItems:'center'}}>
             <Typography>Interval Length</Typography>
             <Select sx={{marginLeft: 3}}value={interval} onChange={intervalChange} >

@@ -8,7 +8,7 @@ export const SET_COURSES_ACTION = "/courses/set";
 export const AUTH_ACTION = "auth";
 export const OPERATION_CODE_ACTION = "operation-code"
 export function setCourses(courses: Course[]) : PayloadAction<Course[]> {
- return {payload: courses, type: SET_COURSES_ACTION};
+    return {payload: courses, type: SET_COURSES_ACTION};
 }
 export function setOperationCode(operationCode: OperationCode): PayloadAction<OperationCode> {
     return {payload: operationCode, type: OPERATION_CODE_ACTION};

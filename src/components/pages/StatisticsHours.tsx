@@ -9,6 +9,6 @@ const StatisticHours: React.FC = () => {
     const courses: Course[] = useSelector<StateType, Course[]>(state => state.courses);
 
     return <Statistics field={"hours"} title={"Courses Duration Statistics"} unit={"h"}
-     intervals={(courseData as any).hourIntervals} objects={courses}></Statistics>
+        intervals={(courseData as any).hourIntervals} objects={courses}></Statistics>
 }
 export default StatisticHours;

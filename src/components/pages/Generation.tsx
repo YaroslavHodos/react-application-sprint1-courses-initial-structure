@@ -11,12 +11,12 @@ const INPUT_GENERATION_ID = "input-generation-id"
 let inputElement:any;
 const Generation: React.FC = () =>
 {
-   const dispatch = useDispatch<any>();
-   const navigate = useNavigate();
+    const dispatch = useDispatch<any>();
+    const navigate = useNavigate();
     function onInput() {
-       const nCourses: number = +inputElement.value;
-       range(0, nCourses).forEach(i => dispatch(addCourse(getRandomCourse(courseData))))
-       navigate(COURSES_PATH);
+        const nCourses: number = +inputElement.value;
+        range(0, nCourses).forEach(i => dispatch(addCourse(getRandomCourse(courseData))))
+        navigate(COURSES_PATH);
     }
     useEffect(() => {
         inputElement = document.getElementById(INPUT_GENERATION_ID);

@@ -11,7 +11,7 @@ export default class AuthServiceClient implements AuthService {
         const account = accounts
         .find(a => loginData.email === a.email && loginData.password === a.password);
         return !!account ? {email: loginData.email, displayName: loginData.email,
-             isAdmin: account.role === "ADMIN"} : false; 
+            isAdmin: account.role === "ADMIN"} : false; 
     }
     async logout(): Promise<boolean> {
         return true
