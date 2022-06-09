@@ -29,10 +29,10 @@ const App: React.FC = () => {
   const operationCode: OperationCode = useSelector<StateType, OperationCode>(state => state.operationCode);
   //useImitator();
   useEffect(() => {
-  getData(dispatch);
-    
+  const subscription = getData(dispatch);
+    return () => subscription.unsubscribe();
   }, [clientData])
- 
+
   const flSignIn = React.useRef<boolean>(false);
   const [flNavigate, setFlNavigate] = React.useState<boolean>(true);
   const relevantItems: RouteType[] = React.useMemo<RouteType[]>(() => getRelevantItems(clientData), [clientData])
@@ -40,12 +40,12 @@ const App: React.FC = () => {
   function operationCodeHandler() {
     console.log("operation code", operationCode)
     if (operationCode === OperationCode.AUTH_ERROR) {
-     if (flSignIn.current) {
-       dispatch(setOperationCode(OperationCode.UNKNOWN));
-       return;
-     }
-     flSignIn.current = true;
-     setTimeout(()=>flSignIn.current=false, 20000)
+      if (flSignIn.current) {
+        dispatch(setOperationCode(OperationCode.UNKNOWN));
+        return;
+      }
+      flSignIn.current = true;
+      setTimeout(()=>flSignIn.current=false, 20000)
       dispatch(authAction(emptyClientData));
     } else if (operationCode === OperationCode.SERVER_UNAVAILABLE) {
       setAlert(true);
@@ -87,16 +87,16 @@ const App: React.FC = () => {
 }
 
 export default App;
-function getData(dispatch: any) {
+function getData(dispatch: any): Subscription {
   
-  coursesService.getObservableData().subscribe({
+  return coursesService.getObservableData().subscribe({
     next: courses_err => {
       if (Array.isArray(courses_err)) {
           dispatch(setCourses(courses_err as Course[]));
           dispatch(setOperationCode(OperationCode.OK));
       } else {
         console.log("getting operation code", courses_err)
-         dispatch(setOperationCode(courses_err as OperationCode))
+          dispatch(setOperationCode(courses_err as OperationCode))
       }
     }
   })
@@ -114,5 +114,5 @@ function getRelevantItems(clientData: ClientData): RouteType[] {
   //TODO for admin
   return ROUTES.filter(r => (!!clientData.email && r.authenticated) ||
     (!clientData.email && !r.authenticated && !r.administrator)
-     || (clientData.isAdmin && r.administrator))
+      || (clientData.isAdmin && r.administrator))
 }
